@@ -15,7 +15,7 @@ class Reasoning extends Thread {
                 "A process consists of multiple threads.");
         System.out.println("A process is sometime referred as task. A thread is often referred as lightweight process.");
         System.out.println("If you call the run() method directly, it will execute, not in another thread, but in the current thread. If start isn't called, then the Thread created will never run. The main thread will finish and the Thread will be garbage collected.");
-
+        System.out.println(" ");
     }
 
     @Override
