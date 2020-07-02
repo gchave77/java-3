@@ -25,7 +25,7 @@ class TeamTC1 implements Runnable {
             }
             team.add(teamNames[i]);
         }
-        System.out.println("Team array list: " + team);
+        System.out.println(threadName + " array list: " + team);
         System.out.println(" ");
     }
 
