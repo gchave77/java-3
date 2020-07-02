@@ -21,11 +21,13 @@ class Sync extends Thread {
         }
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws InterruptedException {
         Sync syncThread = new Sync("sync thread");
         syncThread.start();
+        syncThread.join();
 
         System.out.println(syncThread.nums);
+        System.out.println("Very cool that IntelliJ helps you insert the exception code in the method");
         //this prints out an empty list. write some code that will allow the data generated in the syncThread to show up  here.  There is a brute force way and a more sophisticated way.  Either or will work, but strive for sophistication :)
 
     }
