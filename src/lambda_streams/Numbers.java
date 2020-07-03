@@ -1,7 +1,9 @@
 package lambda_streams;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 class Numbers {
@@ -17,6 +19,8 @@ class Numbers {
         System.out.println("Substraction of list is " + subtracted(nums));
         System.out.println("Product of list is " + multiplied(nums));
         System.out.println("Division of list is " + divided(nums));
+        System.out.println("Max number is " + findMax(nums));
+        System.out.println("Min number is " + findMin(nums));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -110,16 +114,20 @@ class Numbers {
         return product;
     }
 
-//    static int findMax() {
-//        //return the maximum value in the list.
-//        return 0;
-//    }
-//
-//    static int findMin() {
-//        //return the minimum value in the list.
-//        return 0;
-//    }
-//
+    static <a> int findMax(List<Integer>a) {
+        //return the maximum value in the list.
+        List<Integer> sortedlist = a;
+        Collections.sort(sortedlist);
+        return sortedlist.get(sortedlist.size()-1);
+    }
+
+    static <a> int findMin(List<Integer>a) {
+        //return the minimum value in the list.
+        List<Integer> sortedlist = a;
+        Collections.sort(sortedlist);
+        return sortedlist.get(0);
+    }
+
 //    static int compare(int i, int j) {
 //        //compare the values stored in the array at index position i and j.
 //        //if the value at i is greater, return 1.  if the value at j is greater, return -1.  if the two values are equal, return 0.
