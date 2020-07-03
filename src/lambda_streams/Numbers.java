@@ -11,6 +11,7 @@ class Numbers {
         System.out.println(nums);
         System.out.println(isOdd(nums));
         System.out.println(isEven(nums));
+        System.out.println(isPrime(nums));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -51,11 +52,27 @@ class Numbers {
         return false;
     }
 
-//    static boolean isPrime(int i) {
-//        //determine if the value at the index i is a prime number.  return true if yes, return false if no.
-//        return false;
-//    }
-//
+    static boolean isPrime(List<Integer> i) {
+        //determine if the value at the index i is a prime number.  return true if yes, return false if no.
+        int n;
+        Boolean prime = false;
+        for(n=0; n<nums.size(); n++){
+            // condition for nonprime number
+            for (int val = 2; val <= nums.get(n)/2; ++val)
+                if(nums.get(n) % val == 0) {
+                    break;
+                } else {
+                    prime = true;
+                }
+            if (prime) {
+                System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is prime. ");
+                return true;
+            }
+        }
+        System.out.print("No prime numbers ");
+        return false;
+    }
+
 //    static int added() {
 //        //add all the elements in the list.  return the sum.
 //        return 0;
