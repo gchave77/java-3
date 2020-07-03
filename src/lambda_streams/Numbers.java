@@ -15,6 +15,8 @@ class Numbers {
         System.out.println(isPrime(nums));
         System.out.println("Sum of list is " + added(nums));
         System.out.println("Substraction of list is " + subtracted(nums));
+        System.out.println("Product of list is " + multiplied(nums));
+        System.out.println("Division of list is " + divided(nums));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -92,16 +94,22 @@ class Numbers {
         return sum;
     }
 
-//    static int multipled() {
+    static <i> long multiplied(List<Integer>i) {
 //        //multiply all the elements in the list. and return the product.
-//        return 0;
-//    }
-//
-//    static int divided() {
+        long product = nums.get(0);
+        for (int n = 1; n<nums.size(); n++)
+            product *= nums.get(n);
+        return product;
+    }
+
+    static <i> double divided(List<Integer>i) {
 //        //multiply all the elements in the list. and return the product.
-//        return 0;
-//    }
-//
+        double product = nums.get(0);
+        for (int n = 1; n<nums.size(); n++)
+            product /= nums.get(n);
+        return product;
+    }
+
 //    static int findMax() {
 //        //return the maximum value in the list.
 //        return 0;
