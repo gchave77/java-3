@@ -1,5 +1,6 @@
 package lambda_streams;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +13,7 @@ class Numbers {
         System.out.println(isOdd(nums));
         System.out.println(isEven(nums));
         System.out.println(isPrime(nums));
+        System.out.println("Sum of list is " + added(nums));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -73,11 +75,14 @@ class Numbers {
         return false;
     }
 
-//    static int added() {
-//        //add all the elements in the list.  return the sum.
-//        return 0;
-//    }
-//
+    static <i> double added(List<Integer> i) {
+        //add all the elements in the list.  return the sum.
+        double sum = 0;
+        for (int n = 0; n< Numbers.nums.size(); n++)
+            sum += Numbers.nums.get(n);
+        return sum;
+    }
+
 //    static int subtracted() {
 //        //subtract all the elements in the list. return the remainder.
 //        return 0;
