@@ -10,6 +10,7 @@ class Numbers {
         //Part I :complete the static class methods that have been set up in this Numbers class java file.  Use streams to compute the results wheever possible.
         System.out.println(nums);
         System.out.println(isOdd(nums));
+        System.out.println(isEven(nums));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -38,11 +39,18 @@ class Numbers {
         return false;
     }
 
-//    static boolean isEven(i) {
-//        //determine if the value at the index i is even.  return true if yes, return false if  no.
-//        return false;
-//    }
-//
+    static <i> boolean isEven(List<Integer> i) {
+        //determine if the value at the index i is even.  return true if yes, return false if  no.
+        for(int n=0; n<nums.size(); n++){
+            if(nums.get(n) % 2 == 0){
+                System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is even. ");
+                return true;
+            }
+        }
+        System.out.println("No even numbers");
+        return false;
+    }
+
 //    static boolean isPrime(int i) {
 //        //determine if the value at the index i is a prime number.  return true if yes, return false if no.
 //        return false;
