@@ -22,6 +22,7 @@ class Numbers {
         System.out.println("Max number is " + findMax(nums));
         System.out.println("Min number is " + findMin(nums));
         System.out.println("Comparison " + compare(nums));
+        System.out.println("New element is " + append(117));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -130,6 +131,8 @@ class Numbers {
     }
 
     static int compare(List<Integer> nums) {
+//        //compare the values stored in the array at index position i and j.
+//        //if the value at i is greater, return 1.  if the value at j is greater, return -1.  if the two values are equal, return 0.
         int i = 2;
         int j = 3;
         System.out.println("Nums array list: " + nums);
@@ -145,32 +148,14 @@ class Numbers {
         }
     }
 
-//    static int compare(int i, int j) {
-//        //compare the values stored in the array at index position i and j.
-//        //if the value at i is greater, return 1.  if the value at j is greater, return -1.  if the two values are equal, return 0.
-//        return 0;
-//    }
-//
-//    static int append(int n) {
-//        //add a new value to the values list. return that value after adding it to the list.
-//        return 0;
-//    }
+
+    static int append(int n) {
+        //add a new value to the values list. return that value after adding it to the list.
+        System.out.println("Nums length is " + nums.size());
+        List<Integer> addedNums = new ArrayList<Integer>(nums);
+        addedNums.add(n);
+        System.out.println("Added nums length is " + addedNums.size());
+        return n;
+    }
 
 }
-
-//    Open the Numbers.java file. This file contains a Numbers class that has the following method signatures:
-//
-//        isOdd(i)
-//        isEven(i)
-//        isPrime(i)
-//        added()
-//        subtracted()
-//        multiplied()
-//        divided()
-//        findMax()
-//        findMin()
-//        compare(i,j)
-//        append(n)
-//        Complete all of the above instance methods, and test your methods by running all of them in the main() method of the lambda.Numbers class. Display the output to the console.
-//
-//        Convert all of the above instance methods into lambda expressions in the main() method of the Numbers class. Give the lambda expressions names that are slightly different than the instance methods. Verify your code by printing the output of the lambda expressions to the console.
