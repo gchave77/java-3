@@ -22,7 +22,7 @@ class Numbers {
         System.out.println("Max number is " + findMax(nums));
         System.out.println("Min number is " + findMin(nums));
         System.out.println("Comparison " + compare(nums));
-        System.out.println("New element is " + append(117));
+        System.out.println("New element is " + append(1117));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
