@@ -21,6 +21,7 @@ class Numbers {
         System.out.println("Division of list is " + divided(nums));
         System.out.println("Max number is " + findMax(nums));
         System.out.println("Min number is " + findMin(nums));
+        System.out.println("Comparison " + compare(nums));
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -116,16 +117,32 @@ class Numbers {
 
     static <a> int findMax(List<Integer>a) {
         //return the maximum value in the list.
-        List<Integer> sortedlist = a;
-        Collections.sort(sortedlist);
-        return sortedlist.get(sortedlist.size()-1);
+        List<Integer> sortedList = new ArrayList<>(nums);
+        Collections.sort(sortedList);
+        return sortedList.get(sortedList.size()-1);
     }
 
     static <a> int findMin(List<Integer>a) {
         //return the minimum value in the list.
-        List<Integer> sortedlist = a;
-        Collections.sort(sortedlist);
-        return sortedlist.get(0);
+        List<Integer> sortedList = new ArrayList<>(nums);
+        Collections.sort(sortedList);
+        return sortedList.get(0);
+    }
+
+    static int compare(List<Integer> nums) {
+        int i = 2;
+        int j = 3;
+        System.out.println("Nums array list: " + nums);
+        if (nums.get(i) > nums.get(j)){
+            System.out.println(nums.get(i) + " is > " + nums.get(j));
+            return 1;
+        } else if (nums.get(i) == nums.get(j)) {
+            System.out.println(nums.get(i) + " = " + nums.get(j));
+            return 0;
+        } else {
+            System.out.println(nums.get(i) + " is < " + nums.get(j));
+            return -1;
+        }
     }
 
 //    static int compare(int i, int j) {
