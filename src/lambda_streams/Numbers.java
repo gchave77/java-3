@@ -148,14 +148,15 @@ class Numbers {
         };
         System.out.println(val10.calc(nums));
 
-        lambdaCalc<List<Integer>, Integer> val11 = (List<Integer> a) -> {
+        lambdaOneArg<Integer> val11 = (a) -> {
+            a = 17;
             System.out.println("Nums length is " + nums.size());
-            List<Integer> addedNums = new ArrayList<Integer>(nums);
-            addedNums.add(a);
-            System.out.println("Added nums length is " + addedNums.size());
+            List<Integer> newAddedNums = new ArrayList<Integer>(nums);
+            newAddedNums.add(a);
+            System.out.println("Added nums length is " + newAddedNums.size());
             return a;
         };
-        System.out.println(val11.calc(nums));
+        System.out.println("New element is " + val11.oneArg(0));
 
 
     }
@@ -282,4 +283,8 @@ class Numbers {
 
 interface lambdaCalc<T, R> {
     public R calc(T t);
+}
+
+interface lambdaOneArg<T> {
+    public T oneArg(T t);
 }
