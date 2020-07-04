@@ -1,10 +1,10 @@
 package lambda_streams;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 class Numbers {
     static List<Integer> nums = Arrays.asList(10,100,1000,5,50,500,3,30,300,7,70,700,1,10,100,25,250,2500);
@@ -23,6 +23,8 @@ class Numbers {
         System.out.println("Min number is " + findMin(nums));
         System.out.println("Comparison " + compare(nums));
         System.out.println("New element is " + append(1117));
+        System.out.println(" ");
+        System.out.println("Begin Lambdas");
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -37,6 +39,20 @@ class Numbers {
         etc...
         */
 
+        lambdaCalc<List<Integer>, Boolean> val1 = (List<Integer> i) -> {
+            for (int n = 0; n < nums.size(); n++) {
+                if (nums.get(n) % 2 != 0) {
+                    System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is odd. ");
+                    return true;
+                }
+            }
+            System.out.println("No odd numbers");
+            return false;
+
+        };
+        System.out.println(val1.calc(nums));
+
+//        Processor<Integer, Boolean> lambdaIsOdd = (Integer i) -> i % 2 != 0;
     }
 
     static <i> boolean isOdd(List<Integer> i) {
@@ -158,4 +174,8 @@ class Numbers {
         return n;
     }
 
+}
+
+interface lambdaCalc<T, R> {
+    public R calc(T t);
 }
