@@ -24,7 +24,6 @@ class Numbers {
         System.out.println("Comparison " + compare(nums));
         System.out.println("New element is " + append(1117));
         System.out.println(" ");
-        System.out.println("Begin Lambdas");
 
         //Part II - refactor all of the class methods to accept lambda expressions. You can put the lambda functions directly inside the method calls, or defined them first, then pass them into the methods. give them the same names as the static methods, but add the word 'lambda' in front of every lambda function:
         /* e.g.
@@ -39,6 +38,8 @@ class Numbers {
         etc...
         */
 
+        System.out.println("Begin Lambdas");
+
         lambdaCalc<List<Integer>, Boolean> val1 = (List<Integer> i) -> {
             for (int n = 0; n < nums.size(); n++) {
                 if (nums.get(n) % 2 != 0) {
@@ -48,11 +49,115 @@ class Numbers {
             }
             System.out.println("No odd numbers");
             return false;
-
         };
         System.out.println(val1.calc(nums));
 
-//        Processor<Integer, Boolean> lambdaIsOdd = (Integer i) -> i % 2 != 0;
+        lambdaCalc<List<Integer>, Boolean> val2 = (List<Integer> i) -> {
+            for(int n=0; n<nums.size(); n++){
+                if(nums.get(n) % 2 == 0){
+                    System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is even. ");
+                    return true;
+                }
+            }
+            System.out.println("No even numbers");
+            return false;
+        };
+        System.out.println(val2.calc(nums));
+
+        lambdaCalc<List<Integer>, Boolean> val3 = (List<Integer> i) -> {
+            int n;
+            Boolean prime = false;
+            for(n=0; n<nums.size(); n++){
+                // condition for nonprime number
+                for (int val = 2; val <= nums.get(n)/2; ++val)
+                    if(nums.get(n) % val == 0) {
+                        break;
+                    } else {
+                        prime = true;
+                    }
+                if (prime) {
+                    System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is prime. ");
+                    return true;
+                }
+            }
+            System.out.print("No prime numbers ");
+            return false;
+        };
+        System.out.println(val3.calc(nums));
+
+        lambdaCalc<List<Integer>, Double> val4 = (List<Integer> i) -> {
+            double sum = 0;
+            for (int n = 0; n< Numbers.nums.size(); n++)
+                sum += Numbers.nums.get(n);
+            return sum;
+        };
+        System.out.println(val4.calc(nums));
+
+        lambdaCalc<List<Integer>, Double> val5 = (List<Integer> i) -> {
+            double sum = nums.get(0);
+            for (int n = 1; n<nums.size(); n++)
+                sum -= nums.get(n);
+            return sum;
+        };
+        System.out.println(val5.calc(nums));
+
+        lambdaCalc<List<Integer>, Long> val6 = (List<Integer> i) -> {
+            long product = nums.get(0);
+            for (int n = 1; n<nums.size(); n++)
+                product *= nums.get(n);
+            return product;
+        };
+        System.out.println(val6.calc(nums));
+
+        lambdaCalc<List<Integer>, Double> val7 = (List<Integer> i) -> {
+            double product = nums.get(0);
+            for (int n = 1; n<nums.size(); n++)
+                product /= nums.get(n);
+            return product;
+        };
+        System.out.println(val7.calc(nums));
+
+        lambdaCalc<List<Integer>, Integer> val8 = (List<Integer> i) -> {
+            List<Integer> sortedList = new ArrayList<>(nums);
+            Collections.sort(sortedList);
+            return sortedList.get(sortedList.size()-1);
+        };
+        System.out.println(val8.calc(nums));
+
+        lambdaCalc<List<Integer>, Integer> val9 = (List<Integer> i) -> {
+            List<Integer> sortedList = new ArrayList<>(nums);
+            Collections.sort(sortedList);
+            return sortedList.get(0);
+        };
+        System.out.println(val9.calc(nums));
+
+        lambdaCalc<List<Integer>, Integer> val10 = (List<Integer> a) -> {
+            int i = 6;
+            int j = 3;
+            System.out.println("Nums array list: " + nums);
+            if (nums.get(i) > nums.get(j)){
+                System.out.println(nums.get(i) + " is > " + nums.get(j));
+                return 1;
+            } else if (nums.get(i) == nums.get(j)) {
+                System.out.println(nums.get(i) + " = " + nums.get(j));
+                return 0;
+            } else {
+                System.out.println(nums.get(i) + " is < " + nums.get(j));
+                return -1;
+            }
+        };
+        System.out.println(val10.calc(nums));
+
+        lambdaCalc<List<Integer>, Integer> val11 = (List<Integer> a) -> {
+            System.out.println("Nums length is " + nums.size());
+            List<Integer> addedNums = new ArrayList<Integer>(nums);
+            addedNums.add(a);
+            System.out.println("Added nums length is " + addedNums.size());
+            return a;
+        };
+        System.out.println(val11.calc(nums));
+
+
     }
 
     static <i> boolean isOdd(List<Integer> i) {
@@ -163,7 +268,6 @@ class Numbers {
             return -1;
         }
     }
-
 
     static int append(int n) {
         //add a new value to the values list. return that value after adding it to the list.
