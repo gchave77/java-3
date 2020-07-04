@@ -1,6 +1,7 @@
 package lambda_streams;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Animals {
     //This class will be using streams.
@@ -9,10 +10,10 @@ class Animals {
     public static void main(String[] args) {
         System.out.println("original animals : " + animals);
 
-        //clean up the animals array by using the capsFirst() method. follow instructions in the method definition. 
+        //clean up the animals array by using the capsFirst() method. follow instructions in the method definition.
         List<String> cleaned = capsFirst(animals, false);
-        System.out.println(cleaned);
-       
+        System.out.println("Cleaned " + cleaned);
+
         //do not modify these addAnimal() method invocations
         addAnimal("rEIndeeR");
         addAnimal("Platypus");
@@ -26,14 +27,29 @@ class Animals {
         List<String> lowered = lowerFirst(animals,false);
         System.out.println(lowered);
 
-        
+
 
     }
 
     static List<String> capsFirst(List<String> animaList, boolean mutate) {
-        //clean up the animals list so that the first letter is capitalized, and all the other letters are lowercased. Use a stream to accomplish this task.  Also, the 2nd parameter of this function is a boolean.  use this boolean 'flag' to determine whether or not to 'mutate' the original animals array stored as a static class field.  if the flag is set to 'true', mutate the animals and return the animals out of the function.  if it is false, create a copy of the animals, perform your stream operations on the copy, and return the copy of animals out of the function, WITHOUT modifying the original animals array.  
+        //clean up the animals list so that the first letter is capitalized, and all the other letters are lowercased. Use a stream to accomplish this task.  Also, the 2nd parameter of this function is a boolean.  use this boolean 'flag' to determine whether or not to 'mutate' the original animals array stored as a static class field.  if the flag is set to 'true', mutate the animals and return the animals out of the function.  if it is false, create a copy of the animals, perform your stream operations on the copy, and return the copy of animals out of the function, WITHOUT modifying the original animals array.
+        if(mutate){
+            animals = animaList.stream()
+                    .map(x -> x.toLowerCase())
+                    .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
+                    .collect(Collectors.toList());
+        } else {
+            List<String> animaList2 = animaList;
+            return animaList2.stream()
+                    .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
+                    .collect(Collectors.toList());
+        }
         return animals;
     }
+
+
+
+
 
     static String addAnimal(String animal) {
         //add an animal to the animal list.
@@ -54,8 +70,8 @@ class Animals {
     }
 
     static List<String> sortAnimals(boolean mutate) {
-    //sort the animals in alphabetical order.  If the booleaen parameter is true, mutating the animals list.  if the mutate boolean is false, sort a 'copy' of the animals list, then return that list of sorted animals, WITHOUT mutating the static animals array. return the sorted list in both cases.
-    return animals;
+        //sort the animals in alphabetical order.  If the booleaen parameter is true, mutating the animals list.  if the mutate boolean is false, sort a 'copy' of the animals list, then return that list of sorted animals, WITHOUT mutating the static animals array. return the sorted list in both cases.
+        return animals;
     }
 
 
