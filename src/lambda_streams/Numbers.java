@@ -281,10 +281,12 @@ class Numbers {
 
 }
 
+@FunctionalInterface
 interface lambdaCalc<T, R> {
     public R calc(T t);
 }
 
+@FunctionalInterface
 interface lambdaOneArg<T> {
     public T oneArg(T t);
 }
