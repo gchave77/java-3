@@ -28,6 +28,9 @@ class Animals {
         List<String> lowered = lowerFirst(animals,false);
         System.out.println("Lowered first: " + lowered);
 
+        List<String> flip = flipAnimals(false);
+        System.out.println("Reversed animals: " + flip);
+
 
 
     }
@@ -77,8 +80,15 @@ class Animals {
     static List<String> flipAnimals(boolean mutate) {
         //reverse the order of the animals in the animal list.  If the booleaen parameter is true, reverse the static animals array list by mutating the array.  if the mutate boolean is false, flip a 'copy' of the animals list, then return that list of flipped animals, WITHOUT mutating the static animals array. return the flipped list in both cases.
 
-        List<String> instructions = Arrays.asList("Flip","the","animals","list","."," ","Mutate","the","animals","only","if","flag","true");
-        return instructions;
+//        List<String> instructions = Arrays.asList("Flip","the","animals","list","."," ","Mutate","the","animals","only","if","flag","true");
+//        return instructions;
+        if(mutate){
+            Collections.reverse(animals);
+        } else {
+            List<String> animaList4 = animals;
+            Collections.reverse(animaList4);
+        }
+        return animals;
     }
 
     static List<String> sortAnimals(boolean mutate) {
