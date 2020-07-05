@@ -19,6 +19,7 @@ class Animals {
         addAnimal("Platypus");
         addAnimal("frOg");
         addAnimal("lEOpArD");
+        System.out.println(animals);
         //---------------------------------------
 
         capsFirst(animals,true);
@@ -47,12 +48,12 @@ class Animals {
         return animals;
     }
 
-
-
-
-
     static String addAnimal(String animal) {
         //add an animal to the animal list.
+        ArrayList<String> animaList3 = new ArrayList<>(animals);
+//        ArrayList<String> updatedAnimals = new ArrayList<String>(animals);
+        animaList3.add(animal);
+        animals = animaList3;
         return animal;
     };
 
