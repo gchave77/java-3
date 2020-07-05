@@ -155,13 +155,3 @@ class Animals {
 interface LambdaListBool {
     List<String> calc(List<String> list, boolean mutate);
 }
-
-@FunctionalInterface
-interface LambdaString {
-    String calc(String string);
-}
-
-@FunctionalInterface
-interface LambdaBool {
-    List<String> calc(boolean mutate);
-}
