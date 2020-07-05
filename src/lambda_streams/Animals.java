@@ -31,6 +31,9 @@ class Animals {
         List<String> flip = flipAnimals(false);
         System.out.println("Reversed animals: " + flip);
 
+        List<String> sort = sortAnimals(false);
+        System.out.println("Sorted animals: " + sort);
+
 
 
     }
@@ -93,6 +96,12 @@ class Animals {
 
     static List<String> sortAnimals(boolean mutate) {
         //sort the animals in alphabetical order.  If the booleaen parameter is true, mutating the animals list.  if the mutate boolean is false, sort a 'copy' of the animals list, then return that list of sorted animals, WITHOUT mutating the static animals array. return the sorted list in both cases.
+        if (mutate) {
+            Collections.sort(animals);
+        } else {
+            List<String> animaList5 = animals;
+            Collections.sort(animaList5);
+        }
         return animals;
     }
 
