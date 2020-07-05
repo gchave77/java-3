@@ -12,21 +12,21 @@ class Animals {
 
         //clean up the animals array by using the capsFirst() method. follow instructions in the method definition.
         List<String> cleaned = capsFirst(animals, false);
-        System.out.println("Cleaned " + cleaned);
+        System.out.println("Cleaned: " + cleaned);
 
         //do not modify these addAnimal() method invocations
         addAnimal("rEIndeeR");
         addAnimal("Platypus");
         addAnimal("frOg");
         addAnimal("lEOpArD");
-        System.out.println(animals);
+        System.out.println("Add animals: " + animals);
         //---------------------------------------
 
         capsFirst(animals,true);
-        System.out.println(animals);
+        System.out.println("Caps first: " + animals);
 
         List<String> lowered = lowerFirst(animals,false);
-        System.out.println(lowered);
+        System.out.println("Lowered first: " + lowered);
 
 
 
@@ -60,6 +60,17 @@ class Animals {
 
     static List<String> lowerFirst(List<String> animaList, boolean mutate) {
         //lowercase the first letter, and uppercase the rest of the letters, using streams.  Also, depending on the value of the boolean flag 'mutate', mutate the original animals list, or perform your stream operations on a 'copy' of the animals list.  return the list out of hte function in both cases.
+        if(mutate){
+            animals = animaList.stream()
+                    .map(x -> x.toUpperCase())
+                    .map(x -> x.substring(0, 1).toLowerCase() + x.substring(1).toUpperCase())
+                    .collect(Collectors.toList());
+        } else {
+            List<String> animaList3 = animaList;
+            return animaList3.stream()
+                    .map(x -> x.substring(0, 1).toLowerCase() + x.substring(1).toUpperCase())
+                    .collect(Collectors.toList());
+        }
         return animaList;
     }
 
