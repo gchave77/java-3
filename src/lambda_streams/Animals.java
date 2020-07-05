@@ -29,15 +29,54 @@ class Animals {
         System.out.println("Lowered first: " + lowered);
 
         List<String> flip = flipAnimals(false);
-        System.out.println("Reversed animals: " + flip);
+        System.out.println("Flip animals: " + flip);
 
         List<String> sort = sortAnimals(false);
         System.out.println("Sorted animals: " + sort);
 
+
+
         System.out.println(" ");
         System.out.println("Begin Lambdas");
 
+        LambdaListBool val1 = (list, mutate) -> {
+            flipAnimals(mutate);
+            return list;
+        };
+        System.out.print("Lambda flipAnimals: ");
+        System.out.println(val1.calc(animals, true));
 
+
+        LambdaListBool val2 = (list, mutate) -> {
+            lowerFirst(animals, mutate);
+            return animals;
+        };
+        System.out.print("Lambda lowerFirst: ");
+        System.out.println(val2.calc(animals, true));
+
+
+        LambdaListBool val3 = (list, mutate) -> {
+            capsFirst(animals, mutate);
+            return animals;
+        };
+        System.out.print("Lambda capsFirst: ");
+        System.out.println(val3.calc(animals, true));
+
+
+        LambdaListBool val5 = (list, mutate) -> {
+            addAnimal("Jabberwocky");
+            return animals;
+        };
+        System.out.print("Lambda addAnimal: ");
+        System.out.println(val5.calc(animals, true));
+
+
+        LambdaListBool val4 = (list, mutate) -> {
+            sortAnimals(mutate);
+            return animals;
+        };
+        System.out.print("Lambda sortAnimals: ");
+        System.out.println(val4.calc(animals, true));
 
 
     }
@@ -113,7 +152,7 @@ class Animals {
 }
 
 @FunctionalInterface
-interface lambdaListBool {
+interface LambdaListBool {
     List<String> calc(List<String> list, boolean mutate);
 }
 
@@ -123,6 +162,6 @@ interface LambdaString {
 }
 
 @FunctionalInterface
-interface lambdaBool {
+interface LambdaBool {
     List<String> calc(boolean mutate);
 }
