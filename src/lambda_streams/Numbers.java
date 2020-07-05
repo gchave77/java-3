@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 
 class Numbers {
     static List<Integer> nums = Arrays.asList(10,100,1000,5,50,500,3,30,300,7,70,700,1,10,100,25,250,2500);
@@ -40,7 +39,7 @@ class Numbers {
 
         System.out.println("Begin Lambdas");
 
-        lambdaCalc<List<Integer>, Boolean> val1 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Boolean> val1 = (List<Integer> i) -> {
             for (int n = 0; n < nums.size(); n++) {
                 if (nums.get(n) % 2 != 0) {
                     System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is odd. ");
@@ -52,7 +51,7 @@ class Numbers {
         };
         System.out.println(val1.calc(nums));
 
-        lambdaCalc<List<Integer>, Boolean> val2 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Boolean> val2 = (List<Integer> i) -> {
             for(int n=0; n<nums.size(); n++){
                 if(nums.get(n) % 2 == 0){
                     System.out.print("Number " + nums.get(n) + " at index " + String.valueOf(n) + " is even. ");
@@ -64,7 +63,7 @@ class Numbers {
         };
         System.out.println(val2.calc(nums));
 
-        lambdaCalc<List<Integer>, Boolean> val3 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Boolean> val3 = (List<Integer> i) -> {
             int n;
             Boolean prime = false;
             for(n=0; n<nums.size(); n++){
@@ -85,7 +84,7 @@ class Numbers {
         };
         System.out.println(val3.calc(nums));
 
-        lambdaCalc<List<Integer>, Double> val4 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Double> val4 = (List<Integer> i) -> {
             double sum = 0;
             for (int n = 0; n< Numbers.nums.size(); n++)
                 sum += Numbers.nums.get(n);
@@ -93,7 +92,7 @@ class Numbers {
         };
         System.out.println(val4.calc(nums));
 
-        lambdaCalc<List<Integer>, Double> val5 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Double> val5 = (List<Integer> i) -> {
             double sum = nums.get(0);
             for (int n = 1; n<nums.size(); n++)
                 sum -= nums.get(n);
@@ -101,7 +100,7 @@ class Numbers {
         };
         System.out.println(val5.calc(nums));
 
-        lambdaCalc<List<Integer>, Long> val6 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Long> val6 = (List<Integer> i) -> {
             long product = nums.get(0);
             for (int n = 1; n<nums.size(); n++)
                 product *= nums.get(n);
@@ -109,7 +108,7 @@ class Numbers {
         };
         System.out.println(val6.calc(nums));
 
-        lambdaCalc<List<Integer>, Double> val7 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Double> val7 = (List<Integer> i) -> {
             double product = nums.get(0);
             for (int n = 1; n<nums.size(); n++)
                 product /= nums.get(n);
@@ -117,21 +116,21 @@ class Numbers {
         };
         System.out.println(val7.calc(nums));
 
-        lambdaCalc<List<Integer>, Integer> val8 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Integer> val8 = (List<Integer> i) -> {
             List<Integer> sortedList = new ArrayList<>(nums);
             Collections.sort(sortedList);
             return sortedList.get(sortedList.size()-1);
         };
         System.out.println(val8.calc(nums));
 
-        lambdaCalc<List<Integer>, Integer> val9 = (List<Integer> i) -> {
+        LambdaCalc<List<Integer>, Integer> val9 = (List<Integer> i) -> {
             List<Integer> sortedList = new ArrayList<>(nums);
             Collections.sort(sortedList);
             return sortedList.get(0);
         };
         System.out.println(val9.calc(nums));
 
-        lambdaCalc<List<Integer>, Integer> val10 = (List<Integer> a) -> {
+        LambdaCalc<List<Integer>, Integer> val10 = (List<Integer> a) -> {
             int i = 6;
             int j = 3;
             System.out.println("Nums array list: " + nums);
@@ -148,7 +147,7 @@ class Numbers {
         };
         System.out.println(val10.calc(nums));
 
-        lambdaOneArg<Integer> val11 = (a) -> {
+        LambdaOneArg<Integer> val11 = (a) -> {
             a = 17;
             System.out.println("Nums length is " + nums.size());
             List<Integer> newAddedNums = new ArrayList<Integer>(nums);
@@ -282,11 +281,11 @@ class Numbers {
 }
 
 @FunctionalInterface
-interface lambdaCalc<T, R> {
+interface LambdaCalc<T, R> {
     public R calc(T t);
 }
 
 @FunctionalInterface
-interface lambdaOneArg<T> {
+interface LambdaOneArg<T> {
     public T oneArg(T t);
 }

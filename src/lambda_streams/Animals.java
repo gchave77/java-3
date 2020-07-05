@@ -34,6 +34,10 @@ class Animals {
         List<String> sort = sortAnimals(false);
         System.out.println("Sorted animals: " + sort);
 
+        System.out.println(" ");
+        System.out.println("Begin Lambdas");
+
+
 
 
     }
@@ -106,4 +110,19 @@ class Animals {
     }
 
 
+}
+
+@FunctionalInterface
+interface lambdaListBool {
+    List<String> calc(List<String> list, boolean mutate);
+}
+
+@FunctionalInterface
+interface LambdaString {
+    String calc(String string);
+}
+
+@FunctionalInterface
+interface lambdaBool {
+    List<String> calc(boolean mutate);
 }
