@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>Animals.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+.s4 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Animals.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>lambda_streams;
+
+<span class="s0">import </span>java.util.*;
+<span class="s0">import </span>java.util.stream.Collectors;
+
+<span class="s0">class </span>Animals
+{
+    <span class="s2">//This class will be using streams.</span>
+    <span class="s0">static </span>List&lt;String&gt; animals = Arrays.asList(<span class="s3">&quot;peacoCK&quot;</span>,<span class="s3">&quot;rabbit&quot;</span>,<span class="s3">&quot;chiwawa&quot;</span>,<span class="s3">&quot;OranguTAN&quot;</span>,<span class="s3">&quot;vipeR&quot;</span>,<span class="s3">&quot;cobra&quot;</span>,<span class="s3">&quot;paNDa&quot;</span>,<span class="s3">&quot;bUffalo&quot;</span>,<span class="s3">&quot;DeeR&quot;</span>,<span class="s3">&quot;maLLard&quot;</span>);
+
+    <span class="s0">public static void </span>main(String[] args)
+    {
+        System.out.println(<span class="s3">&quot;original animals : &quot; </span>+ animals);
+
+        <span class="s2">//clean up the animals array by using the capsFirst() method. follow instructions in the method definition.</span>
+        List&lt;String&gt; cleaned = capsFirst(animals, <span class="s0">false</span>);
+        System.out.println(<span class="s3">&quot;Cleaned: &quot; </span>+ cleaned);
+
+        <span class="s2">//do not modify these addAnimal() method invocations</span>
+        addAnimal(<span class="s3">&quot;rEIndeeR&quot;</span>);
+        addAnimal(<span class="s3">&quot;Platypus&quot;</span>);
+        addAnimal(<span class="s3">&quot;frOg&quot;</span>);
+        addAnimal(<span class="s3">&quot;lEOpArD&quot;</span>);
+        System.out.println(<span class="s3">&quot;Add animals: &quot; </span>+ animals);
+        <span class="s2">//---------------------------------------</span>
+
+        capsFirst(animals,<span class="s0">true</span>);
+        System.out.println(<span class="s3">&quot;Caps first: &quot; </span>+ animals);
+
+        List&lt;String&gt; lowered = lowerFirst(animals,<span class="s0">false</span>);
+        System.out.println(<span class="s3">&quot;Lowered first: &quot; </span>+ lowered);
+
+        List&lt;String&gt; flip = flipAnimals(<span class="s0">false</span>);
+        System.out.println(<span class="s3">&quot;Flip animals: &quot; </span>+ flip);
+
+        List&lt;String&gt; sort = sortAnimals(<span class="s0">false</span>);
+        System.out.println(<span class="s3">&quot;Sorted animals: &quot; </span>+ sort);
+
+
+
+        System.out.println(<span class="s3">&quot; &quot;</span>);
+        System.out.println(<span class="s3">&quot;Begin Lambdas&quot;</span>);
+
+        LambdaListBool val1 = (list, mutate) -&gt;
+        {
+            flipAnimals(mutate);
+            <span class="s0">return </span>list;
+        };
+        System.out.print(<span class="s3">&quot;Lambda flipAnimals: &quot;</span>);
+        System.out.println(val1.calc(animals, <span class="s0">true</span>));
+
+
+        LambdaListBool val2 = (list, mutate) -&gt;
+        {
+            lowerFirst(animals, mutate);
+            <span class="s0">return </span>animals;
+        };
+        System.out.print(<span class="s3">&quot;Lambda lowerFirst: &quot;</span>);
+        System.out.println(val2.calc(animals, <span class="s0">true</span>));
+
+
+        LambdaListBool val3 = (list, mutate) -&gt;
+        {
+            capsFirst(animals, mutate);
+            <span class="s0">return </span>animals;
+        };
+        System.out.print(<span class="s3">&quot;Lambda capsFirst: &quot;</span>);
+        System.out.println(val3.calc(animals, <span class="s0">true</span>));
+
+
+        LambdaListBool val5 = (list, mutate) -&gt;
+        {
+            addAnimal(<span class="s3">&quot;Jabberwocky&quot;</span>);
+            <span class="s0">return </span>animals;
+        };
+        System.out.print(<span class="s3">&quot;Lambda addAnimal: &quot;</span>);
+        System.out.println(val5.calc(animals, <span class="s0">true</span>));
+
+
+        LambdaListBool val4 = (list, mutate) -&gt;
+        {
+            sortAnimals(mutate);
+            <span class="s0">return </span>animals;
+        };
+        System.out.print(<span class="s3">&quot;Lambda sortAnimals: &quot;</span>);
+        System.out.println(val4.calc(animals, <span class="s0">true</span>));
+
+
+    }
+
+    <span class="s0">static </span>List&lt;String&gt; capsFirst(List&lt;String&gt; animaList, <span class="s0">boolean </span>mutate)
+    {
+        <span class="s2">//clean up the animals list so that the first letter is capitalized, and all the other letters are lowercased. Use a stream to accomplish this task.  Also, the 2nd parameter of this function is a boolean.  use this boolean 'flag' to determine whether or not to 'mutate' the original animals array stored as a static class field.  if the flag is set to 'true', mutate the animals and return the animals out of the function.  if it is false, create a copy of the animals, perform your stream operations on the copy, and return the copy of animals out of the function, WITHOUT modifying the original animals array.</span>
+        <span class="s0">if</span>(mutate)
+        {
+            animals = animaList.stream()
+                    .map(x -&gt; x.toLowerCase())
+                    .map(x -&gt; x.substring(<span class="s4">0</span>, <span class="s4">1</span>).toUpperCase() + x.substring(<span class="s4">1</span>).toLowerCase())
+                    .collect(Collectors.toList());
+        } <span class="s0">else</span>
+            {
+            List&lt;String&gt; animaList2 = animaList;
+            <span class="s0">return </span>animaList2.stream()
+                    .map(x -&gt; x.substring(<span class="s4">0</span>, <span class="s4">1</span>).toUpperCase() + x.substring(<span class="s4">1</span>).toLowerCase())
+                    .collect(Collectors.toList());
+            }
+        <span class="s0">return </span>animals;
+    }
+
+    <span class="s0">static </span>String addAnimal(String animal)
+    {
+        <span class="s2">//add an animal to the animal list.</span>
+        ArrayList&lt;String&gt; animaList3 = <span class="s0">new </span>ArrayList&lt;&gt;(animals);
+<span class="s2">//        ArrayList&lt;String&gt; updatedAnimals = new ArrayList&lt;String&gt;(animals);</span>
+        animaList3.add(animal);
+        animals = animaList3;
+        <span class="s0">return </span>animal;
+    };
+
+
+    <span class="s0">static </span>List&lt;String&gt; lowerFirst(List&lt;String&gt; animaList, <span class="s0">boolean </span>mutate)
+    {
+        <span class="s2">//lowercase the first letter, and uppercase the rest of the letters, using streams.  Also, depending on the value of the boolean flag 'mutate', mutate the original animals list, or perform your stream operations on a 'copy' of the animals list.  return the list out of hte function in both cases.</span>
+        <span class="s0">if</span>(mutate)
+        {
+            animals = animaList.stream()
+                    .map(x -&gt; x.toUpperCase())
+                    .map(x -&gt; x.substring(<span class="s4">0</span>, <span class="s4">1</span>).toLowerCase() + x.substring(<span class="s4">1</span>).toUpperCase())
+                    .collect(Collectors.toList());
+        } <span class="s0">else </span>{
+            List&lt;String&gt; animaList3 = animaList;
+            <span class="s0">return </span>animaList3.stream()
+                    .map(x -&gt; x.substring(<span class="s4">0</span>, <span class="s4">1</span>).toLowerCase() + x.substring(<span class="s4">1</span>).toUpperCase())
+                    .collect(Collectors.toList());
+        }
+        <span class="s0">return </span>animaList;
+    }
+
+    <span class="s0">static </span>List&lt;String&gt; flipAnimals(<span class="s0">boolean </span>mutate)
+    {
+        <span class="s2">//reverse the order of the animals in the animal list.  If the booleaen parameter is true, reverse the static animals array list by mutating the array.  if the mutate boolean is false, flip a 'copy' of the animals list, then return that list of flipped animals, WITHOUT mutating the static animals array. return the flipped list in both cases.</span>
+
+<span class="s2">//        List&lt;String&gt; instructions = Arrays.asList(&quot;Flip&quot;,&quot;the&quot;,&quot;animals&quot;,&quot;list&quot;,&quot;.&quot;,&quot; &quot;,&quot;Mutate&quot;,&quot;the&quot;,&quot;animals&quot;,&quot;only&quot;,&quot;if&quot;,&quot;flag&quot;,&quot;true&quot;);</span>
+<span class="s2">//        return instructions;</span>
+        <span class="s0">if</span>(mutate)
+        {
+            Collections.reverse(animals);
+        } <span class="s0">else </span>{
+            List&lt;String&gt; animaList4 = animals;
+            Collections.reverse(animaList4);
+        }
+        <span class="s0">return </span>animals;
+    }
+
+    <span class="s0">static </span>List&lt;String&gt; sortAnimals(<span class="s0">boolean </span>mutate)
+    {
+        <span class="s2">//sort the animals in alphabetical order.  If the booleaen parameter is true, mutating the animals list.  if the mutate boolean is false, sort a 'copy' of the animals list, then return that list of sorted animals, WITHOUT mutating the static animals array. return the sorted list in both cases.</span>
+        <span class="s0">if </span>(mutate)
+        {
+            Collections.sort(animals);
+        } <span class="s0">else </span>{
+            List&lt;String&gt; animaList5 = animals;
+            Collections.sort(animaList5);
+        }
+        <span class="s0">return </span>animals;
+    }
+
+
+}
+
+@FunctionalInterface
+<span class="s0">interface </span>LambdaListBool
+{
+    List&lt;String&gt; calc(List&lt;String&gt; list, <span class="s0">boolean </span>mutate);
+}
+</pre>
+</body>
+</html>

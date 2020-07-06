@@ -1,13 +1,17 @@
 package regex;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-class Regex {
-    public static void main(String[] args) {
+class Regex
+{
+    public static void main(String[] args)
+    {
 
         // 1. What does the following pattern match? (\d){36} explain in a println() statement.
 
-        System.out.println("The following pattern ('\\d'){36} matches : ...");
+        System.out.println("The following pattern ('\\d'){36} matches : any string of 36 digits");
 
 
 
@@ -15,6 +19,16 @@ class Regex {
 
         // 2. Create a new array of the first names of the TEKmentors.  Use Regex to only grab the first name of every TEKmentor.  Push the values to a new array
         String[] tekMentors;
+        for (String firstWord: TEKmentors)
+        {
+            Pattern pattern = Pattern.compile("\\w+");
+            Matcher matcher = pattern.matcher(firstWord);
+            if (matcher.find())
+            {
+                firstWord = matcher.group();
+            }
+            System.out.println(firstWord);
+        }
 
 
         // 3. Find all the occurences of any form of 'book' in the following paragraph. use regex to match the occurences and store the count of books in an int.
