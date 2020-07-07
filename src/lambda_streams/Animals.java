@@ -94,14 +94,13 @@ class Animals
         if(mutate)
         {
             animals = animaList.stream()
-                    .map(x -> x.toLowerCase())
                     .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
                     .collect(Collectors.toList());
         } else
             {
             List<String> animaList2 = animaList;
             return animaList2.stream()
-                    .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
+                    .map(x -> x.substring(0, 1).toUpperCase() + x.substring(2).toLowerCase())
                     .collect(Collectors.toList());
             }
         return animals;
