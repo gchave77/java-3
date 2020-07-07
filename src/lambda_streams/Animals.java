@@ -123,7 +123,6 @@ class Animals
         if(mutate)
         {
             animals = animaList.stream()
-                    .map(x -> x.toUpperCase())
                     .map(x -> x.substring(0, 1).toLowerCase() + x.substring(1).toUpperCase())
                     .collect(Collectors.toList());
         } else {
