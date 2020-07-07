@@ -100,7 +100,7 @@ class Animals
             {
             List<String> animaList2 = animaList;
             return animaList2.stream()
-                    .map(x -> x.substring(0, 1).toUpperCase() + x.substring(2).toLowerCase())
+                    .map(x -> x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase())
                     .collect(Collectors.toList());
             }
         return animals;
